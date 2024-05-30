@@ -2,7 +2,7 @@ use core::mem::{align_of, size_of, MaybeUninit};
 
 #[repr(C, align(128))]
 pub struct Slot<const SIZE: usize = 128> {
-    bytes: MaybeUninit<[u8; SIZE]>,
+    pub bytes: MaybeUninit<[u8; SIZE]>,
 }
 
 impl<const SIZE: usize> Slot<SIZE> {

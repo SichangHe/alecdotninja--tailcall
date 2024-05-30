@@ -1,7 +1,7 @@
 use crate::slot::Slot;
 
 pub struct Thunk<'slot, T> {
-    ptr: &'slot mut dyn ThunkFn<'slot, T>,
+    pub ptr: &'slot mut dyn ThunkFn<'slot, T>,
 }
 
 impl<'slot, T> Thunk<'slot, T> {
@@ -30,7 +30,7 @@ impl<T> Drop for Thunk<'_, T> {
     }
 }
 
-trait ThunkFn<'slot, T>: FnOnce(&'slot mut Slot) -> T {
+pub trait ThunkFn<'slot, T>: FnOnce(&'slot mut Slot) -> T {
     unsafe fn call_once_in_slot(&'slot mut self) -> T;
 }
 
